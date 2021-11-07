@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+    id 'obftools' version '1.2.0'
+}
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '11'
+
+repositories {
+    maven {
+        name 'geolykt'
+        url 'https://geolykt.de/maven'
+    }
+    maven {
+        name 'sponge'
+        url 'https://repo.spongepowered.org/maven'
+    }
+    mavenLocal()
+}
+
+obfTools {
+    affectedJar = "./galimulator-desktop.jar"
+    accessWidener = "src/main/resources/aw.accesswidener"
+}
+
+dependencies {
+    compileOnly files("build/obftools/intermediary.jar")
+
+    api "de.geolykt:starloader-api:1.5.0"
+    api "de.geolykt.starloader:launcher:3.0.0"
+}
